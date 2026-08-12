@@ -1,0 +1,6 @@
+---
+- name: webserver-config
+  hosts: webservers
+  become: true
+  roles:
+    - nginx

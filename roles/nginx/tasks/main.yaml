@@ -1,0 +1,23 @@
+- name: install nginx 
+  ansible.builtin.dnf:
+        name: "{{ package_nginx }}"
+        state: present
+- name: install git 
+  ansible.builtin.dnf:
+        name: "{{ package_git }}"
+        state: present
+- name: install java 
+  ansible.builtin.dnf:
+        name: "{{ package_java }}"
+        state: present
+- name: start nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started
+
+- name: copy index.html 
+  ansible.builtin.copy:
+    src: index.html 
+    dest: /usr/share/nginx/html/index.html
+    mode: "0644"
+  notify: Restart nginx
